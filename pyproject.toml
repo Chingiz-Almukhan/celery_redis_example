@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "celeryproject"
+version = "0.1.0"
+description = ""
+authors = ["Almukhan Chingiz <chingizpain@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.2"
+celery = "^5.3.0"
+redis = "^4.5.5"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
