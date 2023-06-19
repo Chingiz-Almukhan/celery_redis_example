@@ -4,8 +4,9 @@ from celery.schedules import crontab
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'celeryProject.settings')
 
-app = Celery('celeryProject')
+app = Celery('celeryProject', )
 app.config_from_object('django.conf:settings', namespace='CELERY')
+
 app.autodiscover_tasks()
 
 app.conf.beat_schedule = {

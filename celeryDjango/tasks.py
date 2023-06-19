@@ -1,4 +1,5 @@
 import requests
+from celery import shared_task
 from django.core.mail import send_mail
 
 from celeryProject.celery import app
@@ -40,3 +41,23 @@ def send_beat_email():
             [contact.email],
             fail_silently=False,
         )
+
+
+@app.task
+def my_task(a, b):
+    return a + b
+
+
+@app.task(bind=True, default_retry_delay=5 * 60)
+def my_task_retry(self, x, y):
+    try:
+        return x + y
+    except Exception as e:
+        raise self.retry(exc=e, countdown=60)
+
+
+@shared_task() # sh == app
+def my_sh_task(msg):
+    return msg + "!!!"
+
+
